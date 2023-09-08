@@ -9,7 +9,7 @@ wrapped in PyQt5, we get our GUI ,combined with selenium ,we can automate testin
     PyQt5
     selenium
   ```
-  you may need to download suitable webdriver according to Edge browser version from (here.)[https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/] and replace with the driver exe inside project dir
+  you may need to download suitable webdriver according to Edge browser version from (here)[https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/] and replace with the driver exe inside project dir
 ## Running
   the main file is `main_c.py`
   > python main_c.py
