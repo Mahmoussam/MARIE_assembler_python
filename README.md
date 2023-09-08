@@ -21,4 +21,9 @@ wrapped in PyQt5, we get our GUI ,combined with selenium ,we can automate testin
   Marie.js wiki
   https://github.com/luchko/QCodeEditor for QCodeEditor widget
   ```
-  
+....
+/*thoughts and extras to do...
+  handle assembling in separate thread ,to avoid freezing with big MAR codes
+  add input/output files handling
+  maybe spend more time on GUI visual imrpovments
+*/
