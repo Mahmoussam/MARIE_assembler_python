@@ -1,0 +1,4 @@
+LOAD X
+Output
+Halt
+X, DEC 13
