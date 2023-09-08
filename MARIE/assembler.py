@@ -35,8 +35,8 @@ class assembler():
             args=line.split(' ')
             args=[i for i in args if i]
             if args[0][-1]==',':#read label
-                if len(args)!=3:
-                    
+                
+                if len(args)<2:
                     raise ASE("Not valid operands/directive",idx+1)
                 #this is a label
                 directive=args[1]
@@ -50,8 +50,9 @@ class assembler():
                     #remove label and just leave the directive + hex at this line, so label definition doesn't make collision in second iteration
                     lines[idx]="HEX "+num
                 else:
-                    
-                    raise ASE("Not valid directive numbering system",idx+1)
+                    #raise ASE("Not valid directive numbering system",idx+1)
+                    labels[args[0][0:-1]]=hex(MEMORY_OFFSET)[2:]#must be hex
+                    lines[idx]=' '.join(args[1:])
             MEMORY_OFFSET+=1
         #build instructions object_code
         marie_obj=object_code()#marie machine code object
@@ -64,7 +65,8 @@ class assembler():
             if not line:
                 continue
             print(idx+1,': '+line)
-            args=(line.upper()).split(' ')
+            args=(line).split(' ')
+            args[0]=args[0].upper()
             try:
                 op=args[0]#operation
                 if op in self.nsys:
@@ -82,6 +84,7 @@ class assembler():
                         raise ASE("Not valid operands",idx+1)
                     #check if operand is a label
                     operand=args[1]
+                    #print(operand,labels)
                     if operand in labels:
                         operand=labels[operand]
                     elif not self.is_hex(operand):
@@ -114,7 +117,7 @@ class object_code():
         self.increment_OP_CNT()
     def pad_data(self,data,pdigits,l_l=-1):
         '''pads hexa data to 'pdigits' digits by adding zeros as needed'''
-        if data[0:2]=='0x':
+        if data[0:2]=='0x' or data[0:2]=='0X' :
             data=data[2:]
         ldigits=len(data)
         if ldigits>pdigits:

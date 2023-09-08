@@ -34,13 +34,16 @@ class Simulator():
     def write_to_memory(self,data):
         '''write to the memory of simulation'''
         memory=self.driver.find_element(By.XPATH,"//table[@id='memory']")
+        #self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+        
         ptr=0
         end=len(data)
         rows=memory.find_elements(By.TAG_NAME,'tr')
         for row in rows:
+            self.driver.execute_script("arguments[0].scrollIntoView();", row)
             cells=row.find_elements(By.TAG_NAME,'td')
             for cell in cells:
-                time.sleep(0.1)
+                #time.sleep(0.1)
                 if ptr==end:
                     return
                 #cell.clear()

@@ -183,6 +183,7 @@ class QCodeEditor(QPlainTextEdit):
                 else:
                     self.font.setBold(False)
                     painter.setPen(QColor("#ffffff"))
+                
                 painter.setFont(self.font)
                 
                 # Draw the line number right justified at the position of the line.
@@ -197,7 +198,7 @@ class QCodeEditor(QPlainTextEdit):
  
         def getWidth(self):
             count = self.editor.blockCount()
-            width = self.fontMetrics().width(str(count)) + 10
+            width = self.fontMetrics().width(str(count)) + 20
             return width      
         
         def updateWidth(self):
@@ -214,7 +215,7 @@ class QCodeEditor(QPlainTextEdit):
             
             if rect.contains(self.editor.viewport().rect()):   
                 fontSize = self.editor.currentCharFormat().font().pointSize()
-                self.font.setPointSize(fontSize)
+                self.font.setPointSize(10)
                 self.font.setStyle(QFont.StyleNormal)
                 self.updateWidth()
                 

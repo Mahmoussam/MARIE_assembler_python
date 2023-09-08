@@ -18,12 +18,13 @@ class MainEditorWindow(QtWidgets.QMainWindow):
         self.ui.codeEditor.textChanged.connect(self._code_changed)
     def _assemble_clicked(self):
         print('Assemble button clicked!')
+        self.ui.hex_PText.clear()
+        self.ui.mc_PText.clear()
         mar=self.ui.codeEditor.toPlainText()#marie assembly code
         print('zz')
         try:
             self.mobj=self.engine.assemble(mar)
-            self.ui.hex_PText.clear()
-            self.ui.mc_PText.clear()
+            
             self.ui.hex_PText.appendPlainText(self.mobj.to_hexstring())
             self.ui.mc_PText.appendPlainText(self.mobj.to_binarystring())
         except Exception as ex:
